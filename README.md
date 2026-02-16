@@ -104,3 +104,69 @@ nexchain-wallet/
 ├── next.config.mjs           # Custom Webpack config
 ├── tailwind.config.js        # Design tokens & color palette
 └── package.json              # Dependency manifest
+
+
+## ⚙️ Installation & Setup
+
+To run this project locally, follow these commands in your terminal.
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/YOUR_USERNAME/nexchain-wallet.git
+cd nexchain-wallet
+```
+
+**2. Install Dependencies**
+```bash
+npm install
+```
+
+**3. Fix Tailwind Version**
+*Note: We explicitly use Tailwind v3.4 to prevent Next.js 16 from defaulting to the v4 alpha build.*
+```bash
+npm install -D tailwindcss@3.4.17 postcss autoprefixer
+```
+
+**4. Run Development Server**
+*Note: We use the `--webpack` flag to ensure Ethers.js compatibility with the build system.*
+```bash
+npm run dev
+```
+
+Visit `http://localhost:3000` to view the app.
+
+---
+
+## 🐛 Technical Challenges & Solutions
+
+### 1. The "Next.js 16 vs Ethers.js" Build Conflict
+**Issue:** Next.js 16 uses Turbopack by default. Ethers.js relies on several Node.js modules (`encoding`, `pino-pretty`) that cause build failures in Turbopack.
+**Solution:**
+- Modified `next.config.mjs` to add these modules to `webpack.externals`.
+- Updated `package.json` build scripts to force Webpack usage: `"build": "next build --webpack"`.
+
+### 2. Client-Side Hydration Mismatch
+**Issue:** Accessing `window.ethereum` directly in component bodies causes Server-Side Rendering (SSR) crashes because `window` is undefined on the server.
+**Solution:**
+- Implemented a strictly typed `useEffect` check within the `useWallet` hook.
+- All Web3 logic is guarded by `if (typeof window !== 'undefined')`.
+
+### 3. PostCSS Config Loading
+**Issue:** Using ES Modules (`.mjs`) alongside CommonJS Tailwind configs caused the CSS engine to hang during compilation.
+**Solution:**
+- Renamed `postcss.config.js` to `postcss.config.cjs` to explicitly define the module system for the CSS processor.
+
+---
+
+## 📄 License
+
+This project is submitted as a technical assignment.
+Open source under the [MIT License](LICENSE).
+
+---
+
+<p align="center">
+  <span style="font-family: monospace; color: #666;">
+    ENGINEERED WITH PRECISION
+  </span>
+</p>
