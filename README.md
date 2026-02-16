@@ -23,7 +23,7 @@
 
 ## 🔭 Overview
 
-NexChain is a frontend coding challenge submission designed to demonstrate proficiency with modern Web3 tooling. Unlike standard wallet adapters, NexChain focuses on **engineering rigor**, **state persistence**, and a **distinct visual identity** inspired by high-performance computing consoles (e.g., Oxide Computer).
+NexChain is a frontend coding challenge submission designed to demonstrate proficiency with modern Web3 tooling. Unlike standard wallet adapters, NexChain focuses on **engineering rigor**, **state persistence**, and a **distinct visual identity** inspired by high-performance computing consoles.
 
 The application connects to the Ethereum Mainnet to fetch real-time data without relying on heavy third-party APIs, reading directly from the blockchain via RPC.
 
@@ -104,6 +104,7 @@ nexchain-wallet/
 ├── next.config.mjs           # Custom Webpack config
 ├── tailwind.config.js        # Design tokens & color palette
 └── package.json              # Dependency manifest
+```
 
 ---
 
