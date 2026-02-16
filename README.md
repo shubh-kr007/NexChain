@@ -105,6 +105,7 @@ nexchain-wallet/
 ├── tailwind.config.js        # Design tokens & color palette
 └── package.json              # Dependency manifest
 
+---
 
 ## ⚙️ Installation & Setup
 
